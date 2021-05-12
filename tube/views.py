@@ -152,9 +152,9 @@ class SearchView(View):
             for w in word_list:
 
                if "option" in request.GET:
-                   query |= Q(Q(description__icontains=w | Q(title__icontains=w))
+                   query |= Q( Q(description__icontains=w) | Q(title__icontains=w) )
                else:
-                   query &= Q(Q(description__icontains=w | Q(title__icontains=w))
+                   query &= Q( Q(description__icontains=w) | Q(title__icontains=w) )
 
         if "page" in request.GET:
             page  = request.GET["page"]

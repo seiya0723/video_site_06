@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("tube.urls"), name="tube"),
-    path('accounts/',include("allauth.urls"),name="account"), # ←allauthのurls.pyを登録
+    path('', include("tube.urls")),
+    path('accounts/',include("allauth.urls")), # ←allauthのurls.pyを登録
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
