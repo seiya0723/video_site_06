@@ -1,0 +1,51 @@
+{% extends "common/sidebar.html" %}
+{% load static %}
+
+
+{% block site_title %}{% endblock %}
+
+
+{% block extra_head %}
+<script>console.log("追加のcssやjsがあればここにまとめて書く");</script>
+
+{% endblock %}
+
+
+
+{% block page_title %}{% endblock %}
+
+{% block main %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <select name="category">
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                {% for tag in tags %}
+                <input id ="{{ tag.id }}" type="checkbox" name="tag" value="{{ tag.id }}"><label for="{{ tag.id }}">{{ tag.name }}</label>
+                {% endfor %}
+            </div>
+
+            <div><input class = "form-text" placeholder="タイトル..." name="title" value="{{ request.POST.title }}"></div>
+
+            <div><textarea class="form-control" name="description" placeholder="動画説明文...">{{ video.description }}</textarea></div>
+
+            <div>動画：<input type="file" accept="video/mp4" name="movie"></div>
+
+            <div>
+                <ul>
+                    <li>mp4ファイルのみ対応しています。</li>
+                    <li>ファイルサイズは上限200MBです。</li>
+                 </ul>
+            </div>
+
+            <input class="form-control my-2" type="submit" value="送信">
+
+        </form>
+{% endblock %}
